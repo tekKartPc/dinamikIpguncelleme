@@ -39,6 +39,11 @@ else:
 	print("\n curl paketi kurulu \n")
 
 
+$kullaniciAdi = raw_input( "\n "+ bcolors.OKBLUE + "Kullanıcı adını giriniz ( ön tanımlı: 'pi' ): "+bcolors.ENDC )
+$if kullaniciAdi == "": kullaniciAdi = "pi"
+
+$print("\n Zamanlanmış görevi uygulayacak olan kullanıcı '"+kullaniciAdi+"' olarak atandı. \n ")
+
 HostingUrl 	= ""
 is_valid	= 0
  
@@ -77,9 +82,10 @@ while not is_valid :
 print("\n İp bilgisi güncelleme aralığı '"+str(KacDakika)+"' dakika olarak atandı. \n ")
 print("\n İp bilginizin gönderilmesi, zamanlı görev ataması ile '"+str(KacDakika)+"' dakikada bir yapılacak şekilde atandı. \n ")
 
-cronGorev = "*/"+str(KacDakika)+" * * * * curl "+HostingUrl+"/"+PhpDosyasi+" > /dev/null 2>&1"
+cronGorev = "*/"+str(KacDakika)+" * * * * curl "+HostingUrl+"/"+PhpDosyasi+" >/dev/null 2>&1"
 
-commands.getoutput("crontab -l | { cat; echo \""+cronGorev+"\"; } | crontab -")
+$print("crontab -l | { cat; echo '"+cronGorev+"'; } | crontab -")
+commands.getoutput("crontab -l | { cat; echo '"+cronGorev+"'; } | crontab -")
 
 dosyaIcerigi = """<?php // tekKartPc.com aracılığı ile ;)
 echo '<h1> ip adresiniz: '.$_SERVER['REMOTE_ADDR'].' </h1>'; //denemenizi yaptıktan sonra bu satırı yorum satırına çeviriniz ! 
@@ -92,9 +98,9 @@ VHostDosya = open(PhpDosyasi, "w")
 VHostDosya.write(dosyaIcerigi)
 VHostDosya.close()
 
-print("İşlem tamamlanmıştır. \n crontab -l komutunu çalıştırdıktan sonra aşağıdaki satırı göremiyorsanız \n")
-print("lütfen crontab -e komutunu yazdıktan sonra ekleyin \n")
-print(cronGorev)
+print("İşlem tamamlanmıştır. Lütfen oluşturulan '"+PhpDosyasi+"' isimli dosyayı hostinginize gönderin (upload)")
+# \n crontab -l komutunu çalıştırdıktan sonra aşağıdaki satırı göremiyorsanız \n")
+#print("lütfen crontab -e komutunu yazdıktan sonra ekleyin \n")print(cronGorev)
 
 
 
