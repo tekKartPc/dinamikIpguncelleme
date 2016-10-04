@@ -81,8 +81,7 @@ print("\n İp bilgisi güncelleme aralığı '"+str(KacDakika)+"' dakika olarak 
 print("\n İp bilginizin gönderilmesi, zamanlı görev ataması ile '"+str(KacDakika)+"' dakikada bir yapılacak şekilde atandı. \n ")
 
 cronGorev = "*/"+str(KacDakika)+" * * * * curl "+HostingUrl+"/"+PhpDosyasi+" >/dev/null 2>&1"
-
-$print("crontab -l | { cat; echo '"+cronGorev+"'; } | crontab -")
+#print("crontab -l | { cat; echo '"+cronGorev+"'; } | crontab -")
 commands.getoutput("crontab -l | { cat; echo '"+cronGorev+"'; } | crontab -")
 
 dosyaIcerigi = """<?php // tekKartPc.com aracılığı ile ;)
