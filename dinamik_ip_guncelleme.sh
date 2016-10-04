@@ -24,8 +24,6 @@ print("  \"Y888  \"Y8888  888  888 888    Y88b \"Y888888 888      \"Y888 888    
 print(" \n \n ")
 print(" ------------------------------------------------------------------------------------------------------------------------------")
 
-print(" ------------------------------------------------------------------------------------------------------------------------------")
-
 if commands.getoutput("whoami") != "root":
 	print( "\n" + bcolors.WARNING+" lütfen "+ bcolors.FAIL+" sudo yetkisi ile çalıştırın !... \n "+bcolors.ENDC)
 	exit();
@@ -58,7 +56,7 @@ while not is_valid :
 
 print("\n sitenizin url bilgisi '"+HostingUrl+"' olarak atandı. \n ")
 
-PhpDosyasi = raw_input( "\n "+ bcolors.OKBLUE + "Php dosyanızın ismini giriniz ( örn: ip_icin_dosya.php ): "+bcolors.ENDC )
+PhpDosyasi = raw_input( "\n "+ bcolors.OKBLUE + "Php dosyanızın ismini giriniz ( örn: __tahmin_edilmeyecek_dosya_ismi.php ): "+bcolors.ENDC )
 
 print("\n Oluşturacak php dosya ismi '"+PhpDosyasi+"' olarak atandı. \n Tek Kart Pc 'nizin istek yapacağı url şu şekildedir; '"+HostingUrl+"/"+PhpDosyasi+"' \n ")
 
@@ -78,10 +76,9 @@ while not is_valid :
 print("\n İp bilgisi güncelleme aralığı '"+str(KacDakika)+"' dakika olarak atandı. \n ")
 print("\n İp bilginizin gönderilmesi, zamanlı görev ataması ile '"+str(KacDakika)+"' dakikada bir yapılacak şekilde atandı. \n ")
 
-cronGorev = "*/"+str(KacDakika)+" * * * * curl "+HostingUrl+"/"+PhpDosyasi+" >/dev/null 2>&1"
-cronTxt = "crontab -l | { cat; echo \""+cronGorev+"\"; } | crontab -"
+cronGorev = "*/"+str(KacDakika)+" * * * * curl "+HostingUrl+"/"+PhpDosyasi+" > /dev/null 2>&1"
 
-commands.getoutput(cronTxt)
+commands.getoutput("crontab -l | { cat; echo \""+cronGorev+"\"; } | crontab -")
 
 dosyaIcerigi = """<?php // tekKartPc.com aracılığı ile ;)
 echo '<h1> ip adresiniz: '.$_SERVER['REMOTE_ADDR'].' </h1>'; //denemenizi yaptıktan sonra bu satırı yorum satırına çeviriniz ! 
@@ -94,7 +91,8 @@ VHostDosya = open(PhpDosyasi, "w")
 VHostDosya.write(dosyaIcerigi)
 VHostDosya.close()
 
-print("İşlem tamamlanmıştır. \n crontab -l komutunu çalıştırdıktan sonra aşağıdaki satırı göremiyorsanız lütfen crontab -e komutunu yazdıktan sonra ekleyin \n")
+print("İşlem tamamlanmıştır. \n crontab -l komutunu çalıştırdıktan sonra aşağıdaki satırı göremiyorsanız \n")
+print("lütfen crontab -e komutunu yazdıktan sonra ekleyin \n")
 print(cronGorev)
 
 
