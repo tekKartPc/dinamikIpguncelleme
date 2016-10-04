@@ -11,6 +11,7 @@ class bcolors:
 	FAIL = '\033[91m'
 	ENDC = '\033[0m'
 
+print(" ------------------------------------------------------------------------------------------------------------------------------")
 print(" \n \n ") 
 print(" 888             888      888    d8P                   888    8888888b.                                               ")
 print(" 888             888      888   d8P                    888    888   Y88b                                              ")
@@ -20,8 +21,10 @@ print(" 888    d8P  Y8b 888 .88P 8888888b        \"88b 888P\"   888    8888888P\
 print(" 888    88888888 888888K  888  Y88b   .d888888 888     888    888        888          888      888  888 888  888  888 ")
 print(" Y88b.  Y8b.     888 \"88b 888   Y88b  888  888 888     Y88b.  888        Y88b.    d8b Y88b.    Y88..88P 888  888  888 ")
 print("  \"Y888  \"Y8888  888  888 888    Y88b \"Y888888 888      \"Y888 888         \"Y8888P Y8P  \"Y8888P  \"Y88P\"  888  888  888 ")
-                                                                              
 print(" \n \n ")
+print(" ------------------------------------------------------------------------------------------------------------------------------")
+
+print(" ------------------------------------------------------------------------------------------------------------------------------")
 
 if commands.getoutput("whoami") != "root":
 	print( "\n" + bcolors.WARNING+" lütfen "+ bcolors.FAIL+" sudo yetkisi ile çalıştırın !... \n "+bcolors.ENDC)
@@ -75,8 +78,9 @@ while not is_valid :
 print("\n İp bilgisi güncelleme aralığı '"+str(KacDakika)+"' dakika olarak atandı. \n ")
 print("\n İp bilginizin gönderilmesi, zamanlı görev ataması ile '"+str(KacDakika)+"' dakikada bir yapılacak şekilde atandı. \n ")
 
-cronTxt = "crontab -l | { cat; echo \"*/"+str(KacDakika)+" * * * * curl "+HostingUrl+"/"+PhpDosyasi+" >/dev/null 2>&1\"; } | crontab -"
-#crontab -l | { cat; echo "*/10 * * * * /script/script.sh > /dev/null 2>&1"; } | crontab - print(cronTxt)
+cronGorev = "*/"+str(KacDakika)+" * * * * curl "+HostingUrl+"/"+PhpDosyasi+" >/dev/null 2>&1"
+cronTxt = "crontab -l | { cat; echo \""+cronGorev+"\"; } | crontab -"
+
 commands.getoutput(cronTxt)
 
 dosyaIcerigi = """<?php // tekKartPc.com aracılığı ile ;)
@@ -90,7 +94,8 @@ VHostDosya = open(PhpDosyasi, "w")
 VHostDosya.write(dosyaIcerigi)
 VHostDosya.close()
 
-
+print("İşlem tamamlanmıştır. \n crontab -l komutunu çalıştırdıktan sonra aşağıdaki satırı göremiyorsanız lütfen crontab -e komutunu yazdıktan sonra ekleyin \n")
+print(cronGorev)
 
 
 
