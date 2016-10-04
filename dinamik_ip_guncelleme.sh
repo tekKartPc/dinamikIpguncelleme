@@ -38,11 +38,9 @@ if len(ss) > 0:
 else:
 	print("\n curl paketi kurulu \n")
 
-
-$kullaniciAdi = raw_input( "\n "+ bcolors.OKBLUE + "Kullanıcı adını giriniz ( ön tanımlı: 'pi' ): "+bcolors.ENDC )
-$if kullaniciAdi == "": kullaniciAdi = "pi"
-
-$print("\n Zamanlanmış görevi uygulayacak olan kullanıcı '"+kullaniciAdi+"' olarak atandı. \n ")
+#kullaniciAdi = raw_input( "\n "+ bcolors.OKBLUE + "Kullanıcı adını giriniz ( ön tanımlı: 'pi' ): "+bcolors.ENDC )
+#if kullaniciAdi == "": kullaniciAdi = "pi"
+#print("\n Zamanlanmış görevi uygulayacak olan kullanıcı '"+kullaniciAdi+"' olarak atandı. \n ")
 
 HostingUrl 	= ""
 is_valid	= 0
